@@ -1,3 +1,5 @@
+![banner](/app/opengraph-image.png)
+
 # waitlyst
 
-![banner](/app/opengraph-image.png)
+### The easiest way to create and manage waitlists for your product.
