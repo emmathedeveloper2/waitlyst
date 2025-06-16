@@ -1,0 +1,7 @@
+# CHANGELOG
+
+## 2025 - 06 - 16: Add new logo assets in PNG and SVG formats and First commit
+
+- Initial commit
+- Added a PNG logo file with a detailed binary representation.
+- Introduced a new SVG logo file featuring a circular design with a stroke and mask for visual effects.
