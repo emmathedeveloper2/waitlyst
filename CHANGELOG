@@ -16,3 +16,5 @@
 - Introduced new assets for account creation and sign-in banners.
 
 refactor: remove unused APP_URL from environment schema
+
+fix: enhance signup uniqueness check by adding appId to query
