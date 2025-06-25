@@ -1,7 +1,6 @@
 import { getAppSignups } from "@/app/actions/apps.actions"
 import Image from "next/image"
 import ShareLinkButton from "./share-link-button"
-import { APP_URL } from "@/app/_lib/env"
 import { headers } from "next/headers"
 
 

@@ -14,3 +14,5 @@
 - Modified package.json to add new scripts for database management and authentication generation.
 - Added new dependencies including drizzle-orm, better-auth, and others.
 - Introduced new assets for account creation and sign-in banners.
+
+refactor: remove unused APP_URL from environment schema
