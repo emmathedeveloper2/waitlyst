@@ -15,7 +15,7 @@ const AppHeaderTitle = async ({ app }: AppHeaderTitleProps) => {
     const baseUrl = headersList.get('x-base-url') || ''; // Get the base URL
 
     return (
-        <div className='w-full flex flex-col md:flex-row gap-[16px]'>
+        <div className='w-full flex gap-[16px]'>
             <Link href={'/dashboard'} className='w-max flex items-center gap-[8px]'>
                 <ArrowLeftIcon />
                 <h3>{app.name}</h3>

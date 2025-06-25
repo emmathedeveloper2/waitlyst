@@ -5,9 +5,9 @@ import toast from 'react-hot-toast';
 import { authClient } from '../_lib/auth/client';
 import Button from './button';
 import { useRouter } from 'next/navigation';
-import { fa } from 'zod/v4/locales';
+import clsx from 'clsx';
 
-const LogOutButton = () => {
+const LogOutButton = ({ className } : { className?: string }) => {
 
     const router = useRouter()
 
@@ -43,7 +43,7 @@ const LogOutButton = () => {
     }
 
     return (
-        <Button disabled={loggingOut} onClick={handleLogOut} className='hidden md:flex'>
+        <Button disabled={loggingOut} onClick={handleLogOut} className={clsx(className)}>
             {
                 loggingOut ?
                 <Loader2Icon className='animate-spin' />

@@ -50,7 +50,7 @@ const SignUpsList = async ({ appId }: SignUpsListProps) => {
   return (
     <div className="size-full p-[16px] gap-[16px]">
       {signups.map(signup => (
-        <div key={signup.id} className="px-[24px] py-[8px] rounded-full border-2 border-primary text-primary w-max inline-block mr-[8px]">
+        <div key={signup.id} className="px-[24px] py-[8px] rounded-full border-2 border-primary text-primary w-max inline-block mr-[8px] mb-[8px]">
           <span>{signup.email}</span>
         </div>
       ))}

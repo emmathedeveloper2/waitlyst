@@ -7,6 +7,7 @@ import HeaderLogo from './header-logo'
 import { user } from '../_lib/db/schemas'
 import { usePathname } from 'next/navigation'
 import LogOutButton from './logout-button'
+import MobileNav from './mobile-nav'
 
 type HeaderProps = {
   user?: typeof user.$inferSelect
@@ -23,9 +24,6 @@ const Header = ({ user } : HeaderProps) => {
       <nav className='hidden items-center gap-4 md:flex'>
         <Link href={'/pricing'}>
           Pricing
-        </Link>
-        <Link href={'/pricing'}>
-          Developers
         </Link>
       </nav>
 
@@ -47,12 +45,10 @@ const Header = ({ user } : HeaderProps) => {
 
       {
         user && pathname.startsWith('/dashboard') &&
-        <LogOutButton />
+        <LogOutButton className='hidden md:flex'/>
       }
 
-      <button className='md:hidden text-foreground'>
-        <MenuIcon/>
-      </button>
+      <MobileNav user={user} pathname={pathname}/>
     </header>
   )
 }

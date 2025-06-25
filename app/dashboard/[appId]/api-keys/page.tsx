@@ -26,8 +26,8 @@ async function AppAPIKeysPage({ params } : { params: Promise<{ appId: string }> 
     <main className='flex flex-col flex-1 w-full'>
       <WarningBanner />
 
-      <section className='w-full p-[16px]'>
-        <SecretKeyDisplay title='PROJECT ID' type='project id' projectId={app.projectId}/>
+      <section className='w-full p-[8px] md:p-[16px]'>
+        <SecretKeyDisplay title='App ID' type='project id' projectId={app.projectId}/>
         <SecretKeyDisplay title='API Key' type='api key'/>
       </section>
 
