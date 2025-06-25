@@ -21,7 +21,6 @@ const SocialSignIn = () => {
                     toast.success("Signed In successfully")
                 },
                 onError: ({ error }) => {
-                    console.log(error)
                     toast.error(error.message || error.statusText || "Something went wrong!")
                 },
                 onRequest: () => {
