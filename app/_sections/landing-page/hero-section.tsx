@@ -22,7 +22,7 @@ const HeroSection = () => {
           <h2 className='font-instrument text-center'>The easiest way to create and manage waitlists for your app.</h2>
         </div>
 
-        <LinkButton href='/' className='mt-[64px] large highlighted'>
+        <LinkButton href='/dashboard' className='mt-[64px] large highlighted'>
           Add waitlyst to your app today
           <ArrowRightIcon />
         </LinkButton>

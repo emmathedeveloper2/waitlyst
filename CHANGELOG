@@ -22,3 +22,5 @@ fix: enhance signup uniqueness check by adding appId to query
 fix: improve error handling and validation in signup process
 
 feat: implement mobile navigation component for improved user experience
+
+fix: update LinkButton href in HeroSection to point to dashboard
