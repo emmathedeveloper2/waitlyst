@@ -2,9 +2,9 @@ import JoinWaitListForm from '@/app/_forms/join-waitlist-form'
 import { getAppById } from '@/app/actions/apps.actions'
 import React from 'react'
 
-export async function generateMetadata({ params } : { params: { appId: string } }){
+export async function generateMetadata({ params } : { params: Promise<{ appId: string }> }){
     
-    const { appId } = params
+    const { appId } = await params
 
     const app = await getAppById(appId)
 
