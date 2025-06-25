@@ -29,7 +29,7 @@ const JoinWaitListForm = ({ appId , ownerId } : JoinWaitListFormProps) => {
         const response = await addSignUp(email , appId , ownerId)
 
         if(response.error){
-          toast.error(response.error.message)
+          toast.error(response.error)
         }else {
           toast.success("You've joined the waitlist 🎉🎉🎉")
         }

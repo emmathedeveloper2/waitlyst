@@ -37,7 +37,7 @@ const SecretKeyDisplay = ({ title, type = "project id", projectId }: SecretKeyDi
 
             if (error) {
                 setGenerationState('error')
-                toast.error(error.message)
+                toast.error(error)
             } else {
 
                 setGeneratedKey(key)
