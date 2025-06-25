@@ -2,10 +2,6 @@ import JoinWaitListForm from '@/app/_forms/join-waitlist-form'
 import { getAppById } from '@/app/actions/apps.actions'
 import React from 'react'
 
-type WaitLystFormPageProps = {
-    params: Promise<{ appId: string }>
-}
-
 export async function generateMetadata({ params } : { params: { appId: string } }){
     
     const { appId } = params
@@ -18,7 +14,9 @@ export async function generateMetadata({ params } : { params: { appId: string } 
     }
 }
 
-async function WaitLystFormPage({ params } : WaitLystFormPageProps) {
+async function WaitLystFormPage({ params } : {
+    params: Promise<{ appId: string }>
+}) {
 
   const { appId } = await params
 
