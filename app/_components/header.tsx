@@ -1,21 +1,24 @@
+"use client"
 import { ArrowRightIcon, MenuIcon } from 'lucide-react'
-import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import LinkButton from './link-button'
+import HeaderLogo from './header-logo'
+import { user } from '../_lib/db/schemas'
+import { usePathname } from 'next/navigation'
+import LogOutButton from './logout-button'
 
-const Header = () => {
+type HeaderProps = {
+  user?: typeof user.$inferSelect
+}
+
+const Header = ({ user } : HeaderProps) => {
+
+  const pathname = usePathname()
+
   return (
-    <header className='fixed w-full p-4 flex items-center justify-between z-10'>
-      <Link href={'/'} className='flex items-center gap-2 link-btn'>
-        <Image
-          src={'/logo.png'}
-          alt='logo'
-          height={36}
-          width={36}
-        />
-        <h3>waitlyst</h3>
-      </Link>
+    <header className='w-full p-4 flex items-center justify-between z-10'>
+      <HeaderLogo />
 
       <nav className='hidden items-center gap-4 md:flex'>
         <Link href={'/pricing'}>
@@ -26,10 +29,26 @@ const Header = () => {
         </Link>
       </nav>
 
-      <LinkButton href='/signin' className='hidden md:flex'>
-        Sign In
-        <ArrowRightIcon className='small' />
-      </LinkButton>
+      {
+        !user &&
+        <LinkButton href='/signin' className='hidden md:flex'>
+          Sign In
+          <ArrowRightIcon className='small' />
+        </LinkButton>
+      }
+
+      {
+        user && !pathname.startsWith('/dashboard') &&
+        <LinkButton href='/dashboard' className='hidden md:flex'>
+          Dashboard
+          <ArrowRightIcon className='small' />
+        </LinkButton>
+      }
+
+      {
+        user && pathname.startsWith('/dashboard') &&
+        <LogOutButton />
+      }
 
       <button className='md:hidden text-foreground'>
         <MenuIcon/>

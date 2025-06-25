@@ -1,0 +1,62 @@
+import { getAppSignups } from "@/app/actions/apps.actions"
+import Image from "next/image"
+import ShareLinkButton from "./share-link-button"
+import { APP_URL } from "@/app/_lib/env"
+import { headers } from "next/headers"
+
+
+export const SignUpsLoadingSkeleton = () => {
+
+  return (
+    <div className="size-full inline-flex gap-[16px] p-[16px] animate-pulse">
+      <span className='w-[120px] h-[30px] flex items-center gap-[8px] bg-primary rounded-full opacity-50 inline-block'></span>
+      <span className='w-[180px] h-[30px] flex items-center gap-[8px] bg-primary rounded-full opacity-50 inline-block'></span>
+      <span className='w-[120px] h-[30px] flex items-center gap-[8px] bg-primary rounded-full opacity-50 inline-block'></span>
+    </div>
+  )
+}
+
+type SignUpsListProps = {
+  appId: string
+}
+
+const NoSignUpsPlaceholder = async ({ appId } : { appId: string }) => {
+
+  const headersList = await headers();
+  const baseUrl = headersList.get('x-base-url') || ''; // Get the base URL
+
+  return <div className='relative z-0 size-full flex flex-col gap-[16px] items-center justify-center'>
+    <div className='absolute size-full top-0 left-0 grid place-items-center -z-[1]'>
+      <Image
+        src={'/assets/doodle-no-apps.svg'}
+        alt='doodle'
+        width={596}
+        height={533}
+      />
+    </div>
+
+    <h1 className='font-instrument text-center'>Waiting on your first signup.</h1>
+    <p className='font-instrument text-small md:text-[32px] text-center'>Share your WaitLyst link and watch the list grow.</p>
+
+    <ShareLinkButton className="mt-[32px]" url={baseUrl + '/waitlyst-form/' + appId} />
+  </div>
+}
+
+const SignUpsList = async ({ appId }: SignUpsListProps) => {
+
+  const signups = await getAppSignups(appId)
+
+  if (!signups.length) return <NoSignUpsPlaceholder appId={appId}/>
+
+  return (
+    <div className="size-full p-[16px] gap-[16px]">
+      {signups.map(signup => (
+        <div key={signup.id} className="px-[24px] py-[8px] rounded-full border-2 border-primary text-primary w-max inline-block mr-[8px]">
+          <span>{signup.email}</span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export default SignUpsList

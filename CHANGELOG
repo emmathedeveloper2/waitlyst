@@ -5,3 +5,5 @@
 - Initial commit
 - Added a PNG logo file with a detailed binary representation.
 - Introduced a new SVG logo file featuring a circular design with a stroke and mask for visual effects.
+
+## 2025 - 06 - 25: Refactor code structure for improved readability and maintainability
