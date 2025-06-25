@@ -16,11 +16,9 @@ const SecretKeyDisplay = ({ title, type = "project id", projectId }: SecretKeyDi
 
     const [generationState, setGenerationState] = useState<GenerationState>('idle')
 
-    const [ generatedKey , setGeneratedKey ] = useState<string|null>(null)
+    const [generatedKey, setGeneratedKey] = useState<string | null>(null)
 
     const handleGenerateAPIKey = async () => {
-
-        console.log(generationState)
 
         if (generationState == "success" && generatedKey) {
             toast.promise(navigator.clipboard.writeText(generatedKey), {
@@ -35,15 +33,20 @@ const SecretKeyDisplay = ({ title, type = "project id", projectId }: SecretKeyDi
         try {
             setGenerationState('generating')
 
-            const key = await setAPIKey()
+            const { error, data: key } = await setAPIKey()
 
-            console.log(key)
+            if (error) {
+                setGenerationState('error')
+                toast.error(error.message)
+            } else {
 
-            setGeneratedKey(key)
+                setGeneratedKey(key)
 
-            setGenerationState('success')
+                setGenerationState('success')
 
-            toast.success("API key generated successfully")
+                toast.success("API key generated successfully")
+            }
+
         } catch (error: any) {
             setGenerationState('error')
             toast.error(error.message || error.statusText || "Something went wrong!")

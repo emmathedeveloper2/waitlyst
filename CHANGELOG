@@ -18,3 +18,5 @@
 refactor: remove unused APP_URL from environment schema
 
 fix: enhance signup uniqueness check by adding appId to query
+
+fix: improve error handling and validation in signup process

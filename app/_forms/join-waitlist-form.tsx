@@ -26,8 +26,14 @@ const JoinWaitListForm = ({ appId , ownerId } : JoinWaitListFormProps) => {
   const processForm: SubmitHandler<JoinWaitListSchemaType> = async ({ email }) => {
 
     try {
-        await addSignUp(email , appId , ownerId)
-        toast.success("You've joined the waitlist 🎉🎉🎉")
+        const response = await addSignUp(email , appId , ownerId)
+
+        if(response.error){
+          toast.error(response.error.message)
+        }else {
+          toast.success("You've joined the waitlist 🎉🎉🎉")
+        }
+
     } catch (error) {
       const err = error as any
       toast.error(err.message || err.statusText || "Something went wrong!")

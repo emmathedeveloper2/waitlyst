@@ -47,9 +47,9 @@ export async function setAPIKey() {
         }
         
         //Return the actual key
-        return key
+        return { data: key }
 
-    } catch (error) {
-        throw error
+    } catch (error: any) {
+        return { data: null, error: error.message || error.statusText || "Something went wrong!" }
     }
 }

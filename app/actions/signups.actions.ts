@@ -7,19 +7,16 @@ import { signups } from "../_lib/db/schemas";
 export async function addSignUp(email: string , appId: string , ownerId: string){
     try {
 
-        const [alreadyExists] = await db.select().from(signups).where(
-            and(
-                eq(signups.email , email) , 
-                eq(signups.appId , appId)
-            )
-        )
+        const alreadyExists = await db.query.signups.findFirst({
+            where: and(eq(signups.email , email) , eq(signups.appId , appId))
+        })
 
-        if(alreadyExists) throw Error("This email is already in the waitlist")
+        if(alreadyExists) throw new Error("This email is already in the waitlist")
         
         const [ signup ] = await db.insert(signups).values({ email , appId , ownerId }).returning()
 
-        return signup
-    } catch (error) {
-        throw error
+        return { data: signup }
+    } catch (error: any) {
+        return { data: null , error: error.message || error.statusText || "Something went wrong" }
     }
 }

@@ -1,7 +1,7 @@
 import { db } from "@/app/_lib/db";
 import { apps, credentials, signups } from "@/app/_lib/db/schemas";
 import bcrypt from "bcryptjs";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
 
@@ -24,7 +24,7 @@ const addSignUp = async (apiKey: string, projectId: string , email: string) => {
     if(!isCorrectAPIKey) throw new Error("Invalid API key")
 
     const alreadyExists = await db.query.signups.findFirst({
-        where: eq(signups.email, email)
+        where: and(eq(signups.email, email) , eq(signups.appId , app.id))
     })
 
     if (alreadyExists) throw Error("This email is already in the waitlist")
