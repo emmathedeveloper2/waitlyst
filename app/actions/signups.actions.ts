@@ -7,9 +7,12 @@ import { signups } from "../_lib/db/schemas";
 export async function addSignUp(email: string , appId: string , ownerId: string){
     try {
 
-        const alreadyExists = await db.query.signups.findFirst({
-            where: and(eq(signups.email , email) , eq(signups.appId , appId))
-        })
+        const [alreadyExists] = await db.select().from(signups).where(
+            and(
+                eq(signups.email , email) , 
+                eq(signups.appId , appId)
+            )
+        )
 
         if(alreadyExists) throw Error("This email is already in the waitlist")
         
