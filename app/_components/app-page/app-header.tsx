@@ -1,4 +1,4 @@
-import { getAppById } from '@/app/actions/apps.actions'
+import { getAppById, getTotalAppSignUps } from '@/app/actions/apps.actions'
 import { ArrowLeftIcon, MailIcon } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
@@ -29,12 +29,14 @@ const AppHeader = async ({ id }: AppHeaderProps) => {
 
   const app = await getAppById(id)
 
+  const totalSignUps = await getTotalAppSignUps(id)
+
   if (!app) return <h2>Couldn't load app</h2>
 
   return (
     <header className='w-full flex flex-col items-center gap-[16px] p-[16px] border-b-2 border-b-primary'>
       <AppHeaderTitle app={app}/>
-      <AppHeaderNav appId={app.id}/>
+      <AppHeaderNav appId={app.id} totalSignUps={totalSignUps}/>
     </header>
   )
 }

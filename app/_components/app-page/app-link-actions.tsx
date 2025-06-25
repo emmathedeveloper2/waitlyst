@@ -2,6 +2,7 @@
 
 import { CopyIcon, Share2Icon } from "lucide-react"
 import toast from "react-hot-toast";
+import CopyButton from "../copy-button";
 
 type AppLinkActionsProps = {
     link: string
@@ -29,20 +30,11 @@ const AppLinkActions = ({ link }: AppLinkActionsProps) => {
         })
     }
 
-    const handleCopy = () => {
-        
-        toast.promise(navigator.clipboard.writeText(link), {
-            loading: "Copying Link",
-            error: "Couln't copy link",
-            success: "Link copied"
-        })
-
-    }
-
     return <div className='flex gap-[8px]'>
-        <button onClick={handleCopy} className='text-secondary hover:text-primary cursor-pointer small'>
+        <CopyButton text={link} successText="Link Copied" errorText="Couldn't copy link">
             <CopyIcon />
-        </button>
+        </CopyButton>
+
         <button onClick={handleShare} className='text-secondary hover:text-primary cursor-pointer small'>
             <Share2Icon />
         </button>

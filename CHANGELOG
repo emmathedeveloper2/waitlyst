@@ -24,3 +24,10 @@ fix: improve error handling and validation in signup process
 feat: implement mobile navigation component for improved user experience
 
 fix: update LinkButton href in HeroSection to point to dashboard
+
+feat: add CopyButton component and integration code preview
+
+- Introduced a new CopyButton component for copying text to clipboard with success/error notifications.
+- Implemented IntegrationCodePreview component to display code snippets with syntax highlighting using Shiki.
+- Added integration codes for JavaScript to demonstrate API usage.
+- Updated package.json to include Shiki for code highlighting.

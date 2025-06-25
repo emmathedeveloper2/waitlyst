@@ -146,3 +146,7 @@ body {
     opacity: 50;
   }
 }
+
+.shiki {
+  padding: 8px;
+}

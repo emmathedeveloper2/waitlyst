@@ -1,5 +1,5 @@
 "use server"
-import { and, eq } from "drizzle-orm";
+import { and, count, eq } from "drizzle-orm";
 import { db } from "../_lib/db";
 import { apps, InsertAppSchemaType } from "../_lib/db/schemas/app";
 import { getCurrentUser } from "./user.actions";
@@ -15,6 +15,18 @@ export async function getAppById(id: string) {
         })
 
         return found
+    } catch (error) {
+        throw error
+    }
+}
+
+export async function getTotalAppSignUps(appId: string) {
+
+    try {
+
+        const [ found ] = await db.select({ count: count() }).from(signups).where(eq(signups.appId , appId)).limit(1)
+
+        return found.count || 0
     } catch (error) {
         throw error
     }
