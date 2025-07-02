@@ -2,7 +2,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import Button from '../_components/button'
+import Button from '../_components/buttons/button'
 import { LoaderCircleIcon } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { JoinWaitListSchemaType, joinWaitListSchema } from '../_validation-schemas'
