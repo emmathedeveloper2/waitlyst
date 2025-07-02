@@ -7,28 +7,27 @@ import React, { Suspense } from 'react'
 async function SignInPage() {
 
   return (
-    <Suspense>
-
-      <main className="w-full flex min-h-screen">
-        <div className="hidden md:block flex-1 h-screen">
-          <Image
-            src={'/assets/signin-banner.png'}
-            alt='banner'
-            width={720}
-            height={1024}
-            className='size-full object-cover'
-          />
+    <main className="w-full flex min-h-screen">
+      <div className="hidden md:block flex-1 h-screen">
+        <Image
+          src={'/assets/signin-banner.png'}
+          alt='banner'
+          width={720}
+          height={1024}
+          className='size-full object-cover'
+        />
+      </div>
+      <div className="flex-1 h-screen p-4 flex flex-col">
+        <div className='flex md:justify-end'>
+          <HeaderLogo />
         </div>
-        <div className="flex-1 h-screen p-4 flex flex-col">
-          <div className='flex md:justify-end'>
-            <HeaderLogo />
-          </div>
-          <div className='flex-1 grid place-items-center'>
+        <div className='flex-1 grid place-items-center'>
+          <Suspense>
             <SignInForm />
-          </div>
+          </Suspense>
         </div>
-      </main>
-    </Suspense>
+      </div>
+    </main>
   )
 }
 

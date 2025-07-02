@@ -1,7 +1,7 @@
 import HeaderLogo from '@/app/_components/header-logo'
 import SignUpForm from '@/app/_forms/sign-up-form'
 import Image from 'next/image'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 async function SignUpPage() {
 
@@ -10,7 +10,9 @@ async function SignUpPage() {
       <div className="flex-1 h-screen p-4 flex flex-col">
         <HeaderLogo />
         <div className='flex-1 grid place-items-center'>
-          <SignUpForm />
+          <Suspense>
+            <SignUpForm />
+          </Suspense>
         </div>
       </div>
       <div className="hidden md:block flex-1 h-screen">
