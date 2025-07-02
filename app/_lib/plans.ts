@@ -39,7 +39,7 @@ const live_plans = [
         features: ['1 App', '1000 Signups', 'Email Export:no', 'Waitlist Customization:no']
     },
     {
-        price: 13000,
+        price: 14000,
         title: 'Starter',
         type: 'starter',
         planCode: 'PLN_qb7aq7it8wxiyb0',
