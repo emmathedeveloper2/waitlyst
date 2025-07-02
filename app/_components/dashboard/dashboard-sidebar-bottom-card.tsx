@@ -21,7 +21,7 @@ const DashboardSidebarBottomCard = ({ user } : DashboardSidebarBottomCardProps) 
             </div>
 
             <Suspense fallback={<SubscriptionButtonLoading />}>
-                <SubscriptionButton userEmail={user.email} />
+                <SubscriptionButton />
             </Suspense>
 
             <LogOutButton />

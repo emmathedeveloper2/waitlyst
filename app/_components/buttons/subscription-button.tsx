@@ -2,18 +2,19 @@ import React from 'react'
 import { CrownIcon } from 'lucide-react'
 import { getSubscription } from '../../actions/subscriptions.actions'
 import LinkButton from './link-button'
-
-type SubscriptionButtonProps = {
-    userEmail: string
-}
+import clsx from 'clsx'
 
 export const SubscriptionButtonLoading = () => (
     <div className='w-full rounded-full bg-primary/50 animate-pulse p-4'></div>
 )
 
-const SubscriptionButton = async ({ userEmail } : SubscriptionButtonProps) => {
+type SubscriptionButtonProps = {
+  className?: string
+}
 
-  const subscription = await getSubscription(userEmail)
+const SubscriptionButton = async ({ className } : SubscriptionButtonProps) => {
+
+  const subscription = await getSubscription()
 
   let text = 'Upgrade'
 
@@ -31,7 +32,7 @@ const SubscriptionButton = async ({ userEmail } : SubscriptionButtonProps) => {
   if(subscription?.plan == 'pro') return null
 
   return (
-    <LinkButton href={link} className='bg-primary text-primary-foreground'>
+    <LinkButton href={link} className={clsx('bg-primary text-primary-foreground' , className)}>
         {text}
         <CrownIcon className='small'/>
     </LinkButton>

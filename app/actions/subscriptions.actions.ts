@@ -5,6 +5,7 @@ import { Paystack } from "paystack-sdk"
 import { db } from "../_lib/db"
 import { user, subscriptions } from "../_lib/db/schemas"
 import { PAYSTACK_SECRET_KEY } from "../_lib/env"
+import { getCurrentUser } from "./user.actions"
 
 
 export const generatePaymentLink = async (currentUser: typeof user.$inferSelect , plan: string, planCode: string) => {
@@ -31,10 +32,15 @@ export const generatePaymentLink = async (currentUser: typeof user.$inferSelect 
     }
 }
 
-export const getSubscription = async (email: string) => {
+export const getSubscription = async () => {
 
     try {
-        return (await db.select().from(subscriptions).where(eq(subscriptions.userEmail , email)))[0]
+
+        const user = await getCurrentUser()
+
+        if(!user) throw new Error("UNAUTHORIZED")
+
+        return (await db.select().from(subscriptions).where(eq(subscriptions.userEmail , user.email)))[0]
     } catch (error) {
         console.log(error)
     }

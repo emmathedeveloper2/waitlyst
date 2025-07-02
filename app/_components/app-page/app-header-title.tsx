@@ -1,5 +1,5 @@
 import { apps } from '@/app/_lib/db/schemas/app'
-import { ArrowLeftIcon, CopyIcon, Share2Icon } from 'lucide-react'
+import { ArrowLeftIcon } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 import AppLinkActions from './app-link-actions'

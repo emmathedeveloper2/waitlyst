@@ -4,6 +4,8 @@ import ShareLinkButton from "../buttons/share-link-button"
 import { headers } from "next/headers"
 import { CopyIcon } from "lucide-react"
 import CopyButton from "../buttons/copy-button"
+import SignUpsPageHeader, { SignUpsPageHeaderLoader } from "../app-page/signups-page-header"
+import { Suspense } from "react"
 
 
 export const SignUpsLoadingSkeleton = () => {
@@ -28,7 +30,7 @@ const NoSignUpsPlaceholder = async ({ appId }: { appId: string }) => {
   
   const link = baseUrl + '/waitlyst-form/' + appId
 
-  return <div className='relative z-0 size-full flex flex-col gap-[16px] items-center justify-center'>
+  return <div className='relative z-0 flex-1 w-full flex flex-col gap-[16px] items-center justify-center'>
     <div className='absolute size-full top-0 left-0 grid place-items-center -z-[1]'>
       <Image
         src={'/assets/doodle-no-apps.svg'}
@@ -57,13 +59,18 @@ const SignUpsList = async ({ appId }: SignUpsListProps) => {
   if (!signups.length) return <NoSignUpsPlaceholder appId={appId} />
 
   return (
-    <div className="size-full p-[16px] gap-[16px]">
-      {signups.map(signup => (
-        <div key={signup.id} className="px-[24px] py-[8px] rounded-full border-2 border-primary text-primary w-max inline-block mr-[8px] mb-[8px]">
-          <span>{signup.email}</span>
-        </div>
-      ))}
-    </div>
+    <main className="flex flex-col flex-1 w-full">
+      <Suspense fallback={<SignUpsPageHeaderLoader />}>
+        <SignUpsPageHeader appId={appId}/>
+      </Suspense>
+      <div className="flex-1 p-[16px] gap-[16px]">
+        {signups.map(signup => (
+          <div key={signup.id} className="px-[24px] py-[8px] rounded-full border-2 border-primary text-primary w-max inline-block mr-[8px] mb-[8px]">
+            <span>{signup.email}</span>
+          </div>
+        ))}
+      </div>
+    </main>
   )
 }
 

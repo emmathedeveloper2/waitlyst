@@ -1,39 +1,45 @@
 "use client";
 import clsx from 'clsx'
-import { KeyIcon, MailIcon, PlusSquareIcon, SettingsIcon } from 'lucide-react'
+import { KeyIcon, MailIcon, PaletteIcon, PlusSquareIcon, SettingsIcon } from 'lucide-react'
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'
 import React from 'react'
 
 type DashboardSidebarAppLinksProps = {
-    appId: string
+  appId: string
 }
 
-const DashboardSidebarAppLinks = ({ appId } : DashboardSidebarAppLinksProps) => {
+const DashboardSidebarAppLinks = ({ appId }: DashboardSidebarAppLinksProps) => {
 
-    const links = [
-        {
-            to: `/dashboard/${appId}`,
-            icon: MailIcon,
-            title: "Sign Ups",
-            extra: '0'
-        },
-        {
-            to: `/dashboard/${appId}/api-keys`,
-            icon: KeyIcon,
-            title: "API Keys"
-        },
-        {
-            to: `/dashboard/${appId}/integration`,
-            icon: PlusSquareIcon,
-            title: "Integration"
-        },
-        {
-            to: `/dashboard/${appId}/settings`,
-            icon: SettingsIcon,
-            title: "Setings"
-        },
-    ]
+  const links = [
+    {
+      to: `/dashboard/${appId}`,
+      icon: MailIcon,
+      title: "Sign Ups",
+      extra: '0'
+    },
+    {
+      to: `/dashboard/${appId}/api-keys`,
+      icon: KeyIcon,
+      title: "API Keys"
+    },
+    {
+      to: `/dashboard/${appId}/integration`,
+      icon: PlusSquareIcon,
+      title: "Integration"
+    },
+    {
+      to: `/dashboard/${appId}/settings`,
+      icon: SettingsIcon,
+      title: "Setings"
+    },
+    {
+      to: `/dashboard/${appId}/customize`,
+      icon: PaletteIcon,
+      title: "Customization"
+    },
+  ]
+
 
   const pathname = usePathname()
 
@@ -45,7 +51,7 @@ const DashboardSidebarAppLinks = ({ appId } : DashboardSidebarAppLinksProps) => 
           { 'bg-primary-foreground text-primary': link.to == pathname },
           { 'hover:bg-secondary/20': link.to != pathname }
         )}>
-          <link.icon className='small'/>
+          <link.icon className='small' />
           <p className='text-xs'>{link.title}</p>
         </Link>
       ))}

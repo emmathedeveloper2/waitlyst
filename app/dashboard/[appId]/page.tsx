@@ -8,7 +8,7 @@ async function AppPage({ params } : {
   const { appId } = await params
 
   return (
-    <main className='flex flex-col flex-1 w-full'>
+    <main className='flex flex-col flex-1 h-full'>
         <Suspense fallback={<SignUpsLoadingSkeleton />}>
           <SignUpsList appId={appId}/>
         </Suspense>
