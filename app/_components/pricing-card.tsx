@@ -1,6 +1,7 @@
 "use client";
 import clsx from 'clsx'
 import { useRouter } from 'next/navigation'
+import { formatToCurrency } from '../_lib/helpers';
 
 type PricingCardProps = { 
     price: number, 
@@ -24,18 +25,13 @@ const PricingCard = ({ price , title , className , features , type , userLoggedI
         router.push(`/checkout?plan=${type}`)
     }
 
-    const formatToCurrency = (amount: number) => Intl.NumberFormat('en-US' , {
-        style: 'currency',
-        currency: 'NGN'
-    }) .format(amount)
-
 
     return (
         <div onClick={handleClick} className={clsx(
             'h-full rounded-[32px] p-[36px] cursor-pointer transition-shadow hover:shadow-xl',
             className
             )}>
-            <h2 className='font-instrument font-black'>{formatToCurrency(price).replace('.00' , '')}/<span className='text-small'>month</span></h2>
+            <h2 className='font-instrument font-black'>{formatToCurrency(price)}/<span className='text-small'>month</span></h2>
             { title && <h2 className='font-instrument'>{title}</h2> }
 
             {

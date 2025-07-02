@@ -8,6 +8,7 @@ import clsx from 'clsx'
 import { getCurrentUser } from '../actions/user.actions'
 import { generatePaymentLink } from '../actions/subscriptions.actions'
 import { getPlans } from '../_lib/plans'
+import { formatToCurrency } from '../_lib/helpers'
 
 async function CheckoutPage({ searchParams }: { searchParams: Promise<any> }) {
 
@@ -40,7 +41,7 @@ async function CheckoutPage({ searchParams }: { searchParams: Promise<any> }) {
                 </div>
                 <div className='flex-1 flex flex-col items-center justify-center gap-[32px]'>
                     <h2>Waitlyst {match.title} Plan</h2>
-                    <h1 className='font-instrument'>{match.price}$/<span className='text-small'>month</span></h1>
+                    <h1 className='font-instrument'>{formatToCurrency(match.price)}/<span className='text-small'>month</span></h1>
 
                     <ul className='list-disc pl-[32px]'>
                         {match.features.map((feature, i) => (
