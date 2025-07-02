@@ -15,14 +15,14 @@ const test_plans = [
         features: ['1 App', '1000 Signups', 'Email Export:no', 'Waitlist Customization:no']
     },
     {
-        price: 9,
+        price: 14000,
         title: 'Starter',
         type: 'starter',
         planCode: 'PLN_o2t4xk4s6h8lkgo',
         features: ['50 Apps', '1 million Signups', 'Email Export', 'Waitlist Customization:no']
     },
     {
-        price: 29,
+        price: 44000,
         title: 'Pro',
         type: 'pro',
         planCode: 'PLN_k3wuizzwtwjbby9',

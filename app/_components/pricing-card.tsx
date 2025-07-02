@@ -35,7 +35,7 @@ const PricingCard = ({ price , title , className , features , type , userLoggedI
             'h-full rounded-[32px] p-[36px] cursor-pointer transition-shadow hover:shadow-xl',
             className
             )}>
-            <h1 className='font-instrument'>${formatToCurrency(price)}/<span className='text-small'>month</span></h1>
+            <h2 className='font-instrument font-black'>{formatToCurrency(price).replace('.00' , '')}/<span className='text-small'>month</span></h2>
             { title && <h2 className='font-instrument'>{title}</h2> }
 
             {

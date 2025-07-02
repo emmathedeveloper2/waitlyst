@@ -73,3 +73,5 @@ feat: add CopyButton component and integration code preview
 ### feat: Add Settings page for user configurations
 
 ### fix: Update pricing in plans and correct price type in PricingCard component
+
+### fix: Update pricing for Starter and Pro plans in plans.ts and adjust currency display in PricingCard component
