@@ -1,6 +1,4 @@
 import { getAppById, getTotalAppSignUps } from '@/app/actions/apps.actions'
-import { ArrowLeftIcon, MailIcon } from 'lucide-react'
-import Link from 'next/link'
 import React from 'react'
 import AppHeaderNav from './app-header-nav'
 import AppHeaderTitle from './app-header-title'

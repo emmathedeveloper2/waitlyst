@@ -2,7 +2,7 @@
 
 import { CopyIcon, Share2Icon } from "lucide-react"
 import toast from "react-hot-toast";
-import CopyButton from "../copy-button";
+import CopyButton from "../buttons/copy-button";
 
 type AppLinkActionsProps = {
     link: string
