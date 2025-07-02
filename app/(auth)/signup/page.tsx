@@ -3,7 +3,8 @@ import SignUpForm from '@/app/_forms/sign-up-form'
 import Image from 'next/image'
 import React from 'react'
 
-function SignUpPage() {
+async function SignUpPage() {
+
   return (
     <main className="w-full flex min-h-screen">
       <div className="flex-1 h-screen p-4 flex flex-col">

@@ -2,7 +2,7 @@
 import { ArrowRightIcon, Loader2Icon } from 'lucide-react'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
-import { authClient } from '../_lib/auth/client';
+import { authClient } from '../../_lib/auth/client';
 import Button from './button';
 import { useRouter } from 'next/navigation';
 import clsx from 'clsx';
@@ -43,7 +43,7 @@ const LogOutButton = ({ className } : { className?: string }) => {
     }
 
     return (
-        <Button disabled={loggingOut} onClick={handleLogOut} className={clsx(className)}>
+        <Button variant='secondary' disabled={loggingOut} onClick={handleLogOut} className={clsx(className)}>
             {
                 loggingOut ?
                 <Loader2Icon className='animate-spin' />

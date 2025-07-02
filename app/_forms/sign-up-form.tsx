@@ -3,12 +3,13 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import React, { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { SignUpInputs, signUpSchema } from '../_validation-schemas'
-import Button from '../_components/button'
+import Button from '../_components/buttons/button'
 import { ArrowRightIcon, LoaderCircleIcon } from 'lucide-react'
 import Link from 'next/link'
 import { authClient } from '../_lib/auth/client'
 import toast from 'react-hot-toast'
 import SocialSignIn from '../_components/social-signin'
+import { useSearchParams } from 'next/navigation'
 
 const SignUpForm = () => {
 
@@ -22,19 +23,21 @@ const SignUpForm = () => {
 
   const [loading, setLoading] = useState(false)
 
-  const [emailSent , setEmailSent] = useState('')
+  const [emailSent, setEmailSent] = useState('')
+
+  const searchParams = useSearchParams()
 
   const processForm: SubmitHandler<SignUpInputs> = async (inputs) => {
     await authClient.signUp.email({
       ...inputs,
-      callbackURL: '/dashboard',
+      callbackURL: searchParams.get('redirectTo') ?? '/dashboard',
       fetchOptions: {
         onSuccess: () => {
           toast.success("Account created successfully")
           setEmailSent(inputs.email)
         },
         onError: ({ error }) => {
-          toast.error(error.statusText || error.message || "Something went wrong!")
+          toast.error(error.message || error.statusText || "Something went wrong!")
         },
         onRequest: () => {
           setLoading(true)
@@ -46,7 +49,7 @@ const SignUpForm = () => {
     })
   }
 
-  if(!!emailSent) return (
+  if (!!emailSent) return (
     <div className='flex flex-col items-center gap-[32px] w-full md:w-[400px]'>
       <h2>Check Your Inbox</h2>
       <p>An email has been sent to <span className='text-primary'>{emailSent}</span></p>
@@ -116,7 +119,11 @@ const SignUpForm = () => {
 
       <SocialSignIn />
 
-      <span className='font-semibold'>Already have an account? <Link href={'/signin'} className='text-primary underline link-btn'>Sign In</Link></span>
+      <span className='font-semibold'>Already have an account? <Link
+        href={`/signin${searchParams.has('redirectTo') ? `?redirectTo=${searchParams.get('redirectTo')}` : ''}`}
+        className='text-primary underline link-btn'
+      >Sign In</Link>
+      </span>
     </form>
   )
 }

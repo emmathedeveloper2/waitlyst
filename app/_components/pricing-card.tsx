@@ -1,17 +1,33 @@
+"use client";
 import clsx from 'clsx'
+import { useRouter } from 'next/navigation'
 
 type PricingCardProps = { 
-    price: string, 
+    price: string | number, 
     title?: string, 
     className?: string, 
-    features?: string[] 
+    features?: string[],
+    type: 'free' | 'starter' | 'pro' | string,
+    userLoggedIn: boolean
 }
 
-const PricingCard = ({ price , title , className , features } : PricingCardProps) => {
+const PricingCard = ({ price , title , className , features , type , userLoggedIn } : PricingCardProps) => {
+
+    const router = useRouter()
+
+    const handleClick = () => {
+
+        if(type == 'free') return
+
+        if(!userLoggedIn) router.push('/signin?redirectTo=/pricing')
+
+        router.push(`/checkout?plan=${type}`)
+    }
+
 
     return (
-        <div className={clsx(
-            'h-full rounded-[32px] p-[36px]',
+        <div onClick={handleClick} className={clsx(
+            'h-full rounded-[32px] p-[36px] cursor-pointer transition-shadow hover:shadow-xl',
             className
             )}>
             <h1 className='font-instrument'>${price}/<span className='text-small'>month</span></h1>
@@ -21,7 +37,10 @@ const PricingCard = ({ price , title , className , features } : PricingCardProps
                 features && 
                 <ul className='list-disc pl-[32px]'>
                     {features.map((feature , i) => (
-                        <li key={i}>{feature}</li>
+                        <li 
+                        className={clsx({'line-through opacity-50' : feature.split(':')[1]})}
+                        key={i}
+                        >{feature.split(':')[0]}</li>
                     ))}
                 </ul>
             }

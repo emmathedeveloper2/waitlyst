@@ -4,9 +4,9 @@ import clsx from 'clsx'
 import { ArrowRightIcon, MenuIcon, XIcon } from 'lucide-react'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import LogOutButton from './logout-button'
+import LogOutButton from './buttons/logout-button'
 import { user as users } from '../_lib/db/schemas'
-import LinkButton from './link-button'
+import LinkButton from './buttons/link-button'
 
 const MobileNav = ({ user , pathname }: { user?: typeof users.$inferSelect , pathname: string }) => {
 
@@ -42,6 +42,7 @@ const MobileNav = ({ user , pathname }: { user?: typeof users.$inferSelect , pat
 
                 {
                     user && !pathname.startsWith('/dashboard') &&
+                    
                     <LinkButton href='/dashboard' className='flex md:hidden'>
                         Dashboard
                         <ArrowRightIcon className='small' />

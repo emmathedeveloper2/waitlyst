@@ -2,7 +2,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import Button from '../_components/button'
+import Button from '../_components/buttons/button'
 import { ArrowRightIcon, LoaderCircleIcon } from 'lucide-react'
 import { createApp } from '../actions/apps.actions'
 import { InsertAppSchema, type InsertAppSchemaType } from '../_lib/db/schemas/app'

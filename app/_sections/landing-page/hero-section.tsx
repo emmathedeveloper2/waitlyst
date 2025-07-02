@@ -1,4 +1,4 @@
-import LinkButton from '@/app/_components/link-button'
+import LinkButton from '@/app/_components/buttons/link-button'
 import { ArrowRightIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'

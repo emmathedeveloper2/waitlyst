@@ -3,12 +3,13 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import React, { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { SignInInputs, signInSchema } from '../_validation-schemas'
-import Button from '../_components/button'
+import Button from '../_components/buttons/button'
 import { ArrowRightIcon, LoaderCircleIcon } from 'lucide-react'
 import Link from 'next/link'
 import { authClient } from '../_lib/auth/client'
 import toast from 'react-hot-toast'
 import SocialSignIn from '../_components/social-signin'
+import { useSearchParams } from 'next/navigation'
 
 const SignInForm = () => {
 
@@ -22,11 +23,13 @@ const SignInForm = () => {
 
   const [loading, setLoading] = useState(false)
 
+  const searchParams = useSearchParams()
+
   const processForm: SubmitHandler<SignInInputs> = async (inputs) => {
 
     await authClient.signIn.email({
       ...inputs,
-      callbackURL: '/dashboard',
+      callbackURL: searchParams.get('redirectTo') || '/dashboard',
       fetchOptions: {
         onSuccess: () => {
           toast.success("Signed In successfully")
@@ -94,7 +97,9 @@ const SignInForm = () => {
 
       <SocialSignIn />
 
-      <span className='font-semibold'>Don't have an account? <Link href={'/signup'} className='text-primary underline link-btn'>Sign Up</Link></span>
+      <span className='font-semibold'>Don't have an account? <Link
+        href={`/signup${searchParams.has('redirectTo') ? `?redirectTo=${searchParams.get('redirectTo')}` : ''}`}
+        className='text-primary underline link-btn'>Sign Up</Link></span>
     </form>
   )
 }

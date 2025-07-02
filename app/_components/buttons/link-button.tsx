@@ -2,10 +2,11 @@ import Link from 'next/link'
 import React from 'react'
 
 type LinkButtonProps = {
-    variant?: "primary" | "secondary" | "destructive",
+    variant?: "primary" | "secondary" | "destructive" | 'outline',
     children?: React.ReactNode,
     href: string,
-    className?: string
+    className?: string,
+    target?: string,
 }
 
 const LinkButton = ({ variant="primary" , children , href , className , ...props } : LinkButtonProps) => {

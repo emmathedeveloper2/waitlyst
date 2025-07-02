@@ -1,6 +1,6 @@
 "use client";
 import React from 'react'
-import Button, { ButtonProps } from '../button'
+import Button, { ButtonProps } from './button'
 import { Share2Icon } from 'lucide-react'
 import toast from 'react-hot-toast'
 

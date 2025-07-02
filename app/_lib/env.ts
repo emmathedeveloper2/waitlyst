@@ -6,6 +6,8 @@ const EnvSchema = z.object({
     GITHUB_CLIENT_SECRET: z.string(),
     NODEMAILER_USER: z.string(),
     NODEMAILER_PASSWORD: z.string(),
+    PAYSTACK_SECRET_KEY: z.string(),
+    NODE_ENV: z.string(),
 })
 
 export const { 
@@ -14,4 +16,6 @@ export const {
     GITHUB_CLIENT_SECRET,
     NODEMAILER_USER,
     NODEMAILER_PASSWORD,
+    PAYSTACK_SECRET_KEY,
+    NODE_ENV
  } = EnvSchema.parse(process.env)

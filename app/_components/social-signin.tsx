@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react'
-import Button from './button'
+import { useSearchParams } from 'next/navigation'
+import Button from './buttons/button'
 import GitHubIcon from './icons/github-icon'
 import GoogleIcon from './icons/google-icon'
 import toast from 'react-hot-toast'
@@ -11,11 +12,13 @@ const SocialSignIn = () => {
 
     const [loading, setLoading] = useState(false)
 
+    const searchParams = useSearchParams()
+
     const signInWithGitHub = async () => {
 
         await authClient.signIn.social({
             provider: "github",
-            callbackURL: '/dashboard',
+            callbackURL: searchParams.get('redirectTo') || '/dashboard',
             fetchOptions: {
                 onSuccess: () => {
                     toast.success("Signed In successfully")

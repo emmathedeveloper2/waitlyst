@@ -1,19 +1,18 @@
 "use client"
-import { ArrowRightIcon, MenuIcon } from 'lucide-react'
+import { ArrowRightIcon } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
-import LinkButton from './link-button'
+import LinkButton from './buttons/link-button'
 import HeaderLogo from './header-logo'
 import { user } from '../_lib/db/schemas'
 import { usePathname } from 'next/navigation'
-import LogOutButton from './logout-button'
 import MobileNav from './mobile-nav'
 
 type HeaderProps = {
   user?: typeof user.$inferSelect
 }
 
-const Header = ({ user } : HeaderProps) => {
+const Header = ({ user }: HeaderProps) => {
 
   const pathname = usePathname()
 
@@ -27,28 +26,25 @@ const Header = ({ user } : HeaderProps) => {
         </Link>
       </nav>
 
-      {
-        !user &&
-        <LinkButton href='/signin' className='hidden md:flex'>
-          Sign In
-          <ArrowRightIcon className='small' />
-        </LinkButton>
-      }
+      <div>
+        {
+          !user &&
+          <LinkButton variant='secondary' href='/signin' className='hidden md:flex'>
+            Sign In
+            <ArrowRightIcon className='small' />
+          </LinkButton>
+        }
 
-      {
-        user && !pathname.startsWith('/dashboard') &&
-        <LinkButton href='/dashboard' className='hidden md:flex'>
-          Dashboard
-          <ArrowRightIcon className='small' />
-        </LinkButton>
-      }
+        {
+          user && !pathname.startsWith('/dashboard') &&
+          <LinkButton variant='secondary' href='/dashboard' className='hidden md:flex'>
+            Dashboard
+            <ArrowRightIcon className='small' />
+          </LinkButton>
+        }
 
-      {
-        user && pathname.startsWith('/dashboard') &&
-        <LogOutButton className='hidden md:flex'/>
-      }
-
-      <MobileNav user={user} pathname={pathname}/>
+        <MobileNav user={user} pathname={pathname} />
+      </div>
     </header>
   )
 }

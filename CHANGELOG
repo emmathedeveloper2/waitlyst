@@ -31,3 +31,43 @@ feat: add CopyButton component and integration code preview
 - Implemented IntegrationCodePreview component to display code snippets with syntax highlighting using Shiki.
 - Added integration codes for JavaScript to demonstrate API usage.
 - Updated package.json to include Shiki for code highlighting.
+
+## 2025 - 07 - 2
+
+### feat: Add Avatar component for user profile images and initials fallback
+
+### feat: Implement Button component with multiple variants
+
+### feat: Create CopyButton component for clipboard functionality
+
+### feat: Add LinkButton component for navigation with styling
+
+### feat: Implement LogOutButton component for user sign-out functionality
+
+### feat: Create ShareLinkButton component for sharing URLs
+
+### feat: Add SubscriptionButton component to manage user subscriptions
+
+### feat: Implement DashboardSidebar components for navigation links
+
+### feat: Create DashboardSidebarBottomCard to display user info and subscription status
+
+### feat: Add Logo component for branding
+
+### feat: Define subscription schema in the database
+
+### feat: Implement helper function to get user initials
+
+### feat: Create plans management logic for different environments
+
+### feat: Add subscription actions for payment link generation and retrieval
+
+### feat: Implement Paystack webhook for subscription management
+
+### feat: Create Checkout page for subscription plans
+
+### feat: Implement Dashboard layout with user authentication
+
+### feat: Create Dashboard main page with app list
+
+### feat: Add Settings page for user configurations

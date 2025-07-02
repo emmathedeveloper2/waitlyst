@@ -1,9 +1,9 @@
 import { getAppSignups } from "@/app/actions/apps.actions"
 import Image from "next/image"
-import ShareLinkButton from "./share-link-button"
+import ShareLinkButton from "../buttons/share-link-button"
 import { headers } from "next/headers"
 import { CopyIcon } from "lucide-react"
-import CopyButton from "../copy-button"
+import CopyButton from "../buttons/copy-button"
 
 
 export const SignUpsLoadingSkeleton = () => {

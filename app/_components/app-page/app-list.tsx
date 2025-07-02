@@ -1,5 +1,5 @@
 import { AppListItem } from '@/app/_components/app-page/app-list-item'
-import LinkButton from '@/app/_components/link-button'
+import LinkButton from '@/app/_components/buttons/link-button'
 import { getAppsByUser } from '@/app/actions/apps.actions'
 import { Loader2Icon, PlusIcon } from 'lucide-react'
 import Image from 'next/image'

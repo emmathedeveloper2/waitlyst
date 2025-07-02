@@ -3,7 +3,7 @@ import { codeToHtml } from 'shiki'
 import React, { useEffect, useState } from 'react'
 import integrationCodes from '../_lib/integration-codes';
 import { CopyIcon } from 'lucide-react';
-import CopyButton from './copy-button';
+import CopyButton from './buttons/copy-button';
 
 const IntegrationCodePreview = () => {
 
