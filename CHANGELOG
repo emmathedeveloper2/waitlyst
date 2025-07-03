@@ -76,7 +76,9 @@ feat: add CopyButton component and integration code preview
 
 ### fix: Update pricing for Starter and Pro plans in plans.ts and adjust currency display in PricingCard component
 
-## feat: Implement navigation bar context and enhance dashboard components with sidebar functionality
+## 2025 - 07 - 3
+
+###  feat: Implement navigation bar context and enhance dashboard components with sidebar functionality
 
 fix: Update pricing in plans and correct price type in PricingCard component
 fix: Refactor signups and dashboard components to integrate sidebar functionality

@@ -9,6 +9,8 @@ import { getSubscription } from '@/app/actions/subscriptions.actions'
 import { BoxesIcon, MailIcon } from 'lucide-react'
 import React from 'react'
 
+export const dynamic = 'force-dynamic';
+
 async function UsageAndSubscriptionPage() {
 
   const subscription = await getSubscription()
