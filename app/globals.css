@@ -150,3 +150,7 @@ body {
 .shiki {
   padding: 8px;
 }
+
+.nav {
+  transition: .2s ease-out;
+}

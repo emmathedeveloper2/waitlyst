@@ -2,6 +2,7 @@ import { getAppById, getTotalAppSignUps } from '@/app/actions/apps.actions'
 import React from 'react'
 import AppLinkActions from './app-link-actions'
 import { headers } from 'next/headers'
+import { OpenSidebarButton } from '../nav-bar-context'
 
 type SignUpsPageHeaderProps = {
   appId: string
@@ -35,7 +36,9 @@ const SignUpsPageHeader = async ({ appId }: SignUpsPageHeaderProps) => {
 
   return (
     <header className='w-full flex items-center justify-between gap-[16px] p-[16px]'>
-      <h2>{totalSignUps} Sign Ups</h2>
+      <OpenSidebarButton>
+        <h2>{totalSignUps} Sign Ups</h2>
+      </OpenSidebarButton>
 
       <AppLinkActions link={link} />
     </header>

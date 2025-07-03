@@ -1,5 +1,19 @@
 import { NODE_ENV } from "./env"
 
+export const planFeatures = {
+    free : {
+        apps: 1,
+        signups: 100,
+    },
+    starter : {
+        apps: 50,
+        signups: 1000000,
+    },
+    pro : {
+        apps: Infinity,
+        signups: Infinity,
+    }
+} as {[x: string] : { apps: number, signups: number }}
 
 export const getPlans = () => {
 

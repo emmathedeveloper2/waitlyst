@@ -1,7 +1,8 @@
 "use server";
-import { and, eq } from "drizzle-orm";
+import { and, count, eq } from "drizzle-orm";
 import { db } from "../_lib/db"
 import { signups } from "../_lib/db/schemas";
+import { getCurrentUser } from "./user.actions";
 
 
 export async function addSignUp(email: string , appId: string , ownerId: string){
@@ -18,5 +19,19 @@ export async function addSignUp(email: string , appId: string , ownerId: string)
         return { data: signup }
     } catch (error: any) {
         return { data: null , error: error.message || error.statusText || "Something went wrong" }
+    }
+}
+
+export async function getTotalSignUpsForUser() {
+    try {
+        const user = await getCurrentUser()
+
+        if(!user) throw new Error("UNAUTHORIZED")
+
+        const [found] = await db.select({ count: count() }).from(signups).where(eq(signups.ownerId, user.id)).limit(1)
+
+        return found.count || 0
+    } catch (error) {
+        throw error
     }
 }

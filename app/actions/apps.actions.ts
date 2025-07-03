@@ -24,7 +24,7 @@ export async function getTotalAppSignUps(appId: string) {
 
     try {
 
-        const [ found ] = await db.select({ count: count() }).from(signups).where(eq(signups.appId , appId)).limit(1)
+        const [found] = await db.select({ count: count() }).from(signups).where(eq(signups.appId, appId)).limit(1)
 
         return found.count || 0
     } catch (error) {
@@ -40,6 +40,38 @@ export async function getAppsByUser(userId: string) {
         })
 
         return found
+    } catch (error) {
+        throw error
+    }
+}
+
+export async function getAppsByCurrentUser() {
+    try {
+
+        const user = await getCurrentUser()
+
+        if (!user) throw new Error("UNAUTHORIZED")
+
+        const found = db.query.apps.findMany({
+            where: eq(apps.ownerId, user.id)
+        })
+
+        return found
+    } catch (error) {
+        throw error
+    }
+}
+
+export async function getTotalAppsByCurrentUser() {
+    try {
+
+        const user = await getCurrentUser()
+
+        if (!user) throw new Error("UNAUTHORIZED")
+
+        const [found] = await db.select({ count: count() }).from(apps).where(eq(apps.ownerId, user.id)).limit(1)
+
+        return found.count || 0
     } catch (error) {
         throw error
     }
@@ -68,7 +100,7 @@ export async function getAppSignups(appId: string) {
         if (!user) throw Error("Unauthorized")
 
         const result = db.query.signups.findMany({
-            where: and(eq(signups.appId, appId) , eq(signups.ownerId, user.id))
+            where: and(eq(signups.appId, appId), eq(signups.ownerId, user.id))
         })
 
         return result

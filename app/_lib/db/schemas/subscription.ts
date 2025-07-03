@@ -7,6 +7,6 @@ export const subscriptions = pgTable('subscriptions' , {
     plan: varchar({ length: 255 }).default('free').notNull(),
     emailToken: varchar('email_token' , { length: 255 }).notNull(),
     subscriptionCode: varchar('subscription_code' , { length: 255 }).notNull(),
-    active: boolean().default(false),
+    status: varchar({ length: 255 }).default('active'),
     renewAt: timestamp('renew_at'),
 })

@@ -33,7 +33,7 @@ async function createSubscription({
             token: alreadyExistingSubscription.emailToken
         })
 
-        await db.update(subscriptions).set({ subscriptionCode: subscription_code , emailToken: email_token , plan , active: true , renewAt: (new Date(next_payment_date)) }).where(eq(subscriptions.userEmail , email))
+        await db.update(subscriptions).set({ subscriptionCode: subscription_code , emailToken: email_token , plan , status: 'active' , renewAt: (new Date(next_payment_date)) }).where(eq(subscriptions.userEmail , email))
 
         return
     }
@@ -44,14 +44,19 @@ async function createSubscription({
         userEmail: email,
         emailToken: email_token,
         subscriptionCode: subscription_code,
-        active: true,
+        status: 'active',
         renewAt: (new Date(next_payment_date)),
     })
 }
 
+async function cancelSubscriptionRenewal(subscriptionCode: string) {
+    
+    await db.update(subscriptions).set({ status: 'non-renewing' }).where(eq(subscriptions.subscriptionCode , subscriptionCode))
+}
+
 async function cancelSubscription(subscriptionCode: string) {
     
-    await db.update(subscriptions).set({ plan: 'free' , active: false }).where(eq(subscriptions.subscriptionCode , subscriptionCode))
+    await db.update(subscriptions).set({ status: 'disabled' }).where(eq(subscriptions.subscriptionCode , subscriptionCode))
 }
 
 export const POST = async (request: NextRequest) => {
@@ -79,6 +84,12 @@ export const POST = async (request: NextRequest) => {
             } = body.data
 
             await createSubscription({ email , plan_code , subscription_code , email_token , next_payment_date })
+        }
+
+        if(body.event == "subscription.not_renew") {
+            const { subscription_code } = body.data
+
+            await cancelSubscriptionRenewal(subscription_code)
         }
 
         if(body.event == "subscription.disable") {
