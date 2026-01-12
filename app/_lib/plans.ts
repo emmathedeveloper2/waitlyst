@@ -17,7 +17,8 @@ export const planFeatures = {
 
 export const getPlans = () => {
 
-    return NODE_ENV == "development" ? test_plans : live_plans
+    // return NODE_ENV == "development" ? test_plans : live_plans
+    return test_plans
 }
 
 const test_plans = [
