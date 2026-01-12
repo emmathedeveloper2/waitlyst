@@ -47,9 +47,6 @@ const SocialSignIn = () => {
             <Button type='button' onClick={signInWithGitHub} variant='outline' className="flex-1">
                 <GitHubIcon height={'24'} width={'24'} />
             </Button>
-            <Button type='button' variant='outline' className="flex-1">
-                <GoogleIcon height={'24'} width={'24'} />
-            </Button>
         </div>
     )
 }
